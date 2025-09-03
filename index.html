@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Deepti!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecaca);
+            overflow-x: hidden;
+        }
+        .great-vibes {
+            font-family: 'Great+Vibes', cursive;
+        }
+        .confetti canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .balloon {
+            animation: floatUp 10s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+        .cake {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(to top, #d4a574, #f4e1a8);
+            border-radius: 50% 50% 20% 20%;
+            position: relative;
+            margin: 20px auto;
+        }
+        .cake::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 30px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        .candle {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 20px;
+            background: #fff;
+            border-radius: 2px;
+        }
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+        .quiz-option:hover {
+            transform: scale(1.05);
+        }
+        .note {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            font-style: italic;
+        }
+        .progress-bar {
+            width: 50%;
+            height: 5px;
+            background: #ddd;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #ff6b6b;
+            border-radius: 5px;
+            animation: fillProgress 3s forwards;
+        }
+        @keyframes fillProgress {
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center min-h-screen py-10 relative">
+    <canvas id="confettiCanvas" class="confetti w-full h-full"></canvas>
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f00fbe93-c342-4814-974f-b344205f0659.png" alt="Elegant festive balloons floating in a soft pink sky with gold ribbons and sparkling confetti particles around them, creating a celebratory and joyful atmosphere" class="balloon w-32 h-32 my-2" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/54a6e13d-88f6-46a5-86b7-4ca44ce25b62.png" alt="Elegant festive balloons floating in a soft pink sky with gold ribbons and sparkling confetti particles around them, creating a celebratory and joyful atmosphere" class="balloon w-32 h-32 my-2" style="animation-delay: 1s;" />
+    <div class="text-center z-10">
+        <h1 class="text-6xl text-pink-600 great-vibes mb-4 fade-in">Happy Birthday, Deepti!</h1>
+        <p class="text-lg text-gray-700 fade-in" style="animation-delay: 1s;">From Your Door ka Mittar😎 Nitesh 💕</p>
+        <button id="startBtn" class="mt-6 px-8 py-3 bg-pink-500 text-white rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300 fade-in" style="animation-delay: 2s;">Start the Celebration 🎂</button>
+    </div>
+
+    <div id="sections" class="opacity-0 transition-opacity duration-1000 z-10 mt-10">
+        <!-- Section 1: Questions -->
+        <div id="questionsSection" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl text-pink-600 mb-4 text-center great-vibes">Let's Get Some exiting Questions for you!!...</h2>
+            <p class="text-gray-700 mb-4">Take a moment to think and share these fun questions. Pretend I'm asking you over a long-distance If you want to give the answers HEY!!.. i am online on Instagram! 📞</p>
+            <ol class="list-decimal pl-5 space-y-2">
+                <li>What's your most cherished childhood memory involving a birthday?</li>
+                <li>If you could wish for any superpower, what would it be and why?</li>
+                <li>Describe your perfect day – what would it include?</li>
+                <li>What's the funniest prank you've ever pulled on a friend?</li>
+                <li>If we were together, what adventure would we go on today?</li>
+            </ol>
+            <div class="progress-bar mt-4"><div class="progress-fill"></div></div>
+            <p class="text-center text-gray-500 mt-2">Take your time to reflect... ⏰</p>
+            <button id="nextToQuiz" class="mt-4 w-full px-4 py-2 bg-indigo-500 text-white rounded-full shadow-lg hover:bg-indigo-600 transition-all duration-300">Ready for Sawal Jawab..🐱‍🏍? 🧠</button>
+        </div>
+
+        <!-- Section 2: Quiz -->
+        <div id="quizSection" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg hidden">
+            <h2 class="text-2xl text-purple-600 mb-4 text-center great-vibes">Tricky Quiz Time!</h2>
+            <p class="text-gray-700 mb-4">Try these puzzling questions themed around birthdays and fun. Some are tricky! 😏</p>
+            <div id="quizContainer">
+                <div class="quiz-question">
+                    <p class="mb-3"><strong>1. Riddle Time: I am taken from a mine, and shut up in a wooden case, from which I am never released, and yet I am used by almosteverybody. What am I?</strong></p>
+                    <div class="space-y-2">
+                        <label class="quiz-option block p-2 border rounded cursor-pointer hover:bg-gray-100"><input type="radio" name="q1" value="A"> A) Gold</label>
+                        <label class="quiz-option block p-2 border rounded cursor-pointer hover:bg-gray-100"><input type="radio" name="q1" value="B"> B) Pencil Lead</label>
+                        <label class="quiz-option block p-2 border rounded cursor-pointer hover:bg-gray-100"><input type="radio" name="q1" value="C"> C) Diamond</label>
+                        <label class="quiz-option block p-2 border rounded cursor-pointer hover:bg-gray-100"><input type="radio" name="q1" value="D"> D) Salt</label>
+                    </div>
+                </div>
+                <!-- More questions similarly structured for space; in JS, handle navigation -->
+                <!-- Example 2: Math Trick: If today is your birthday, how old are you? Answer: As old as you are plus one, but wait! -->
+                <!-- 3-5 more tricky ones -->
+            </div>
+            <button id="nextToNote" class="mt-4 w-full px-4 py-2 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hidden">To the Cake and Note! 🎉</button>
+        </div>
+
+        <!-- Section 3: Cake and Note -->
+        <div id="noteSection" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg hidden">
+            <h2 class="text-2xl text-yellow-600 mb-4 text-center great-vibes">Blow Out the Candles!</h2>
+            <div id="cakeDiv" class="cake"><div class="candle"></div></div>
+            <p class="text-center text-gray-700 mt-4 fade-in">Phew! That quiz was tough, mujhe pata ha aata tujhe vaise bhi kuch nhi hai pr, tera mn rakhne ke liye answer sahi bata diya chal. Now, click to makethe candle go out (imagine blowing)! Click below to reveal your note.</p>
+            <button id="revealNote" class="mt-4 w-full px-4 py-2 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 transition-all duration-300">Reveal Birthday Note 💌</button>
+            <div id="birthdayNote" class="note mt-4 opacity-0 transition-opacity duration-2000 hidden">
+                <p class="text-lg text-center great-vibes text-pink-600">Dear Deepti,</p>
+                <p>On this special day, September 4, as you celebrate another year of life, I want you to know how truly wonderful you are. Miles apart doesn't dim the joy you bring into my world. Your smile lights up any room, even through a screen – it's like a birthday candle that never goes out. May this year bring you all the happiness, adventures, and laughs you've dreamed of. You're not just a friend; you're family to me. Here's wishing you a birthday filled with love, surprises, and all your favorite things. Can't wait for when we can celebrate in person!  Nitesh. ❤️ 
+                    Jyada serios mt lena Deepu bhai😎(Deepti). Yeh mil gaya tera surprise...!! Khush naa ab...😜
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Confetti Animation
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particles = [];
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: 0,
+                vx: (Math.random() - 0.5) * 5,
+                vy: Math.random() * 3 + 2,
+                color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+                size: Math.random() * 8 + 2
+            };
+        }
+        function drawParticle(p) {
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x, p.y, p.size, p.size);
+        }
+        function updateParticle(p) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.y > canvas.height) p.y = 0;
+        }
+        for (let i = 0; i < 100; i++) particles.push(createParticle());
+        setInterval(() => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                drawParticle(p);
+                updateParticle(p);
+            });
+        }, 20);
+
+        // Navigation and Interactions
+        document.getElementById('startBtn').addEventListener('click', () => {
+            document.getElementById('confettiCanvas').style.display = 'block'; // More confetti
+            document.getElementById('sections').classList.add('opacity-100');
+            document.querySelector('.banner-text').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('nextToQuiz').addEventListener('click', () => {
+            document.getElementById('questionsSection').classList.add('hidden');
+            document.getElementById('quizSection').classList.remove('hidden');
+            // Slow animation for transition
+            setTimeout(() => {}, 2000);
+        });
+
+        // Simple Quiz Logic (add more options as needed)
+        let score = 0;
+        document.querySelectorAll('input[name="q1"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                if (radio.value === 'B') score++; // Pencil Lead
+                document.getElementById('nextToNote').classList.remove('hidden');
+            });
+        });
+
+        document.getElementById('nextToNote').addEventListener('click', () => {
+            document.getElementById('quizSection').classList.add('hidden');
+            document.getElementById('noteSection').classList.remove('hidden');
+        });
+
+        document.getElementById('revealNote').addEventListener('click', () => {
+            // Simulate blowing out candle with slow animation
+            const candle = document.querySelector('.candle');
+            candle.style.height = '0';
+            setTimeout(() => {
+                document.getElementById('birthdayNote').classList.remove('hidden');
+                document.getElementById('birthdayNote').classList.add('opacity-100');
+            }, 3000); // Time-consuming reveal
+        });
+    </script>
+</body>
+</html>
+</content>
+</create_file>
